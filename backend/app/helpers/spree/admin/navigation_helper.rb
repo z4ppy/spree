@@ -25,7 +25,7 @@ module Spree
         options[:route] ||= "admin_#{args.first}"
 
         destination_url = options[:url] || spree.send("#{options[:route]}_path")
-        titleized_label = Spree.t(options[:label], default: options[:label], scope: [:admin, :tab]).titleize
+        capitalized_label = Spree.t(options[:label], default: options[:label], scope: [:admin, :tab]).capitalize
 
         css_classes = ['sidebar-menu-item d-block w-100 position-relative']
 
@@ -40,13 +40,13 @@ module Spree
         link = if options[:icon]
                  link_to_with_icon(
                    options[:icon],
-                   titleized_label,
+                   capitalized_label,
                    destination_url,
                    class: 'w-100 p-3 d-flex align-items-center'
                  )
                else
                  link_to(
-                   titleized_label,
+                   capitalized_label,
                    destination_url,
                    class: "sidebar-submenu-item w-100 py-1 px-3 d-block #{'text-success' if selected}"
                  )
